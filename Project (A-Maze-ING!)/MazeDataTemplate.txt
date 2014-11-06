@@ -1,0 +1,131 @@
+//remove all commented lines after filling out template!(102 total lines)
+//below are cell codes for wall types
+//0 = left
+//1 = up
+//2 = right
+//3 = down
+//4 = left & up
+//5 = left & right
+//6 = left & down
+//7 = up & right
+//8 = up & down
+//9 = right & down
+//10 = left, right & up
+//11 = up, right & down
+//12 = right, down & left
+//13 = down, left & up
+//14 = no walls
+//row1
+13
+7
+4
+8
+7
+4
+11
+4
+8
+7
+//row2
+4
+2
+5
+4
+9
+6
+7
+6
+7
+5
+//row3
+5
+12
+5
+6
+7
+13
+14
+7
+5
+5
+//row4
+6
+8
+9
+4
+9
+4
+2
+12
+12
+5
+//row5
+4
+8
+7
+6
+8
+9
+6
+8
+7
+5
+//row6
+5
+10
+5
+4
+7
+4
+1
+11
+0
+9
+//row7
+5
+5
+6
+9
+6
+9
+6
+1
+9
+10
+//row8
+6
+2
+4
+8
+8
+1
+11
+6
+11
+5
+//row9
+10
+6
+9
+4
+7
+0
+7
+4
+7
+5
+//row10
+6
+8
+8
+9
+6
+9
+6
+9
+6
+9
+//starting cell
+0
+//winning cell
+99
