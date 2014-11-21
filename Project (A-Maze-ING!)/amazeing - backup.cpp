@@ -1,19 +1,21 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
-#include <cmath>
 #include <string>
 #include <fstream>
 
 using namespace std;
 
-//globals
-int startingCell = 0;
-int currentCell = startingCell;
-int winningCell = 0;
-string faceDirection;
-bool trailsEnabled = false;
-int cell[100];
-bool visited[100] = {false};
+//global variables
+static int startingCell = 0;
+static int currentCell = startingCell;
+static int winningCell = 0;
+
+static string faceDirection;
+static bool trailsEnabled = false;
+
+static bool visited[100] = {false};
+static int cell[100];
+
 
 
 // checks for valid moves based on current cell type
@@ -87,7 +89,7 @@ void drawPlayer(){
    if(faceDirection == "RIGHT"){
     glPolygonMode( GL_FRONT, GL_FILL ); 
     glColor3f( 1.0, 0.0, 0.0 ); //red  
-    glBegin( GL_POLYGON ); //draw player
+    glBegin( GL_POLYGON );      //draw player
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 15);
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 35);
      glVertex2i( (currentCell % 10)*50 + 40, 500 - (currentCell / 10)*50 - 35);   
@@ -99,7 +101,7 @@ void drawPlayer(){
      glVertex2i( (currentCell % 10)*50 + 30, 500 - (currentCell / 10)*50 - 5);
     glEnd();
     glColor3f( 0.0, 0.0, 0.0 ); //black 
-    glBegin( GL_LINES ); //draw player outline
+    glBegin( GL_LINES );        //draw player outline
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 15);
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 35);
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 35);
@@ -120,7 +122,7 @@ void drawPlayer(){
    if(faceDirection == "LEFT"){
     glPolygonMode( GL_FRONT, GL_FILL ); 
     glColor3f( 1.0, 0.0, 0.0 ); //red  
-    glBegin( GL_POLYGON ); //draw player
+    glBegin( GL_POLYGON );      //draw player
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 15); 
      glVertex2i( (currentCell % 10)*50 + 10, 500 - (currentCell / 10)*50 - 35);
      glVertex2i( (currentCell % 10)*50 + 40, 500 - (currentCell / 10)*50 - 35);   
@@ -132,7 +134,7 @@ void drawPlayer(){
      glVertex2i( (currentCell % 10)*50 + 20, 500 - (currentCell / 10)*50 - 5);
     glEnd();
     glColor3f( 0.0, 0.0, 0.0 ); //black 
-    glBegin( GL_LINES ); //draw player outline
+    glBegin( GL_LINES );        //draw player outline
      glVertex2i( (currentCell % 10)*50 + 20, 500 - (currentCell / 10)*50 - 5);
      glVertex2i( (currentCell % 10)*50 + 5, 500 - (currentCell / 10)*50 - 25);
      glVertex2i( (currentCell % 10)*50 + 5, 500 - (currentCell / 10)*50 - 25);
@@ -153,7 +155,7 @@ void drawPlayer(){
    if(faceDirection == "UP"){
     glPolygonMode( GL_FRONT, GL_FILL ); 
     glColor3f( 1.0, 0.0, 0.0 ); //red  
-    glBegin( GL_POLYGON ); //draw player
+    glBegin( GL_POLYGON );      //draw player
      glVertex2i( (currentCell % 10)*50 + 15, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 40);   
@@ -165,7 +167,7 @@ void drawPlayer(){
      glVertex2i( (currentCell % 10)*50 + 5, 500 - (currentCell / 10)*50 - 20);
     glEnd();
     glColor3f( 0.0, 0.0, 0.0 ); //black 
-    glBegin( GL_LINES ); //draw player outline
+    glBegin( GL_LINES );        //draw player outline
      glVertex2i( (currentCell % 10)*50 + 5, 500 - (currentCell / 10)*50 - 20);
      glVertex2i( (currentCell % 10)*50 + 25, 500 - (currentCell / 10)*50 - 5);
      glVertex2i( (currentCell % 10)*50 + 25, 500 - (currentCell / 10)*50 - 5);
@@ -186,7 +188,7 @@ void drawPlayer(){
    if(faceDirection == "DOWN"){
     glPolygonMode( GL_FRONT, GL_FILL ); 
     glColor3f( 1.0, 0.0, 0.0 ); //red  
-    glBegin( GL_POLYGON ); //draw player
+    glBegin( GL_POLYGON );      //draw player
      glVertex2i( (currentCell % 10)*50 + 15, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 40);   
@@ -198,7 +200,7 @@ void drawPlayer(){
      glVertex2i( (currentCell % 10)*50 + 5, 500 - (currentCell / 10)*50 - 30);
     glEnd();
     glColor3f( 0.0, 0.0, 0.0 ); //black 
-    glBegin( GL_LINES ); //draw player outline
+    glBegin( GL_LINES );        //draw player outline
      glVertex2i( (currentCell % 10)*50 + 15, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 10);
      glVertex2i( (currentCell % 10)*50 + 35, 500 - (currentCell / 10)*50 - 10);
@@ -235,12 +237,12 @@ bool checkWin(){
 void findDirection(){
   if ( validMove("UP") )
     faceDirection = "UP";
+  else if ( validMove("RIGHT") )
+    faceDirection = "RIGHT";
   else if ( validMove("DOWN") )
     faceDirection = "DOWN";
-  else if ( validMove("LEFT") )
-    faceDirection = "LEFT";
   else
-    faceDirection = "RIGHT";
+    faceDirection = "LEFT";
 }
 
 
@@ -269,12 +271,11 @@ void changeTrails(){
     trailsEnabled = true;
 }
 
-// draws winning cell until you reach it
+// draws green "F" for winning cell/finish
 void drawWinningCell(){
    if(!checkWin()){
-     glPolygonMode( GL_FRONT, GL_FILL ); 
      glColor3f( 0.0, 1.0, 0.0 ); //green
-     glBegin( GL_LINES ); // draw "F" for "finish"
+     glBegin( GL_LINES );        // draws "F"
       glVertex2i( (winningCell % 10)*50 + 10, 500 - (winningCell / 10)*50 - 8);
       glVertex2i( (winningCell % 10)*50 + 10, 500 - (winningCell / 10)*50 - 45);
       glVertex2i( (winningCell % 10)*50 + 10, 500 - (winningCell / 10)*50 - 45);
@@ -301,7 +302,7 @@ void drawWinningCell(){
 
 // displays "You Win!" in various color in the middle of the screen
 void drawWinScreen(){
-  glColor3f( 0.0, 0.0, 0.1 );
+  glColor3f( 0.0, 0.0, 0.1 );   // dark blue
   glPolygonMode( GL_FRONT, GL_FILL ); 
   glBegin( GL_POLYGON ); //background for "you win"
    glVertex2i(75, 325);
@@ -314,7 +315,7 @@ void drawWinScreen(){
   glScalef(0.5, 0.5, 0.5);
 
   glColor3f( 1.0, 0.0, 0.0 );
-  glutStrokeCharacter(GLUT_STROKE_ROMAN, 'Y'); // "You win!" in various colors
+  glutStrokeCharacter(GLUT_STROKE_ROMAN, 'Y');
   glColor3f( 0.0, 1.0, 0.0 );
   glutStrokeCharacter(GLUT_STROKE_ROMAN, 'o');
   glColor3f( 0.5, 1.0, 0.0 );
@@ -465,7 +466,7 @@ for (int i = 0; i < 100; i++){
    }
 }
 
-//displays relevant visual units
+// displays relevant visual units
 void display(){
    init();
    drawMaze();
@@ -480,39 +481,39 @@ void display(){
    glFlush();
 }
 
-//fill maze with celltype codes for walls, set starting/current/winning cells, and align arrow 
+// processes MazeData.txt
 void fillMaze(){
-  int temp[102]; // 100 maze cells + starting cell + winning cell
+  int temp[102];                   // 100 maze cells + starting cell + winning cell
   ifstream myfile("MazeData.txt"); // open MazeData.txt in read-only mode
   if (myfile.fail()){
-   exit(EXIT_FAILURE);  // close program if MazeData.txt can't be found/opened
+   exit(EXIT_FAILURE);             // close program if MazeData.txt can't be found/opened
   }
+
   int i = 0;
   int cellType = 0;
-  while(!myfile.eof())  // process data file
+
+  while(!myfile.eof())             // process data file
   {
     myfile >> cellType;
     temp[i] = cellType;
     ++i;
   }
-  myfile.close();       // close file
+  myfile.close();                  // close file
 
-  // copy maze data from data file into cell[]
+
   for(int i = 0; i < 100; i++){
-    cell[i] = temp[i];
+    cell[i] = temp[i];             // copy maze data from data file into cell[]
   }
-  // initialize startingCell from value in MazeData.txt
-  startingCell = temp[100];
-  // initialize currentcell with starting cell's value
-  currentCell = startingCell;
-  // initialize winningCell from from value in MazeData.txt
-  winningCell = temp[101];
-  findDirection();  // aligns arrow to open wall
+
+  startingCell = temp[100];        // initialize startingCell from MazeData.txt
+  currentCell = startingCell;      // initialize currentcell from MazeData.txt
+  winningCell = temp[101];         // initialize winningCell from MazeData.txt
+  findDirection();                 // aligns arrow to an open wall
 }
 
 // resets game
 void restart(){
-  fillMaze();                       // reload maze data (allows for on-the-fly changes to maze design)
+  fillMaze();                       // reload maze data (allows for on-the-fly changes to maze)
   for (int i = 0; i < 100; i++){    // makes all cells unvisited
     visited[i] = false;
   }
@@ -525,7 +526,7 @@ void keyboard(unsigned char key, int x, int y)
         case 27:
           exit(0);
           break;
-        case 'w':  // move up if you can
+        case 'w':                   // move up if you can
           faceDirection = "UP";
           if (validMove("UP") && !checkWin()){
             setVisited(currentCell);
@@ -533,7 +534,7 @@ void keyboard(unsigned char key, int x, int y)
           }
           glutPostRedisplay();
           break;
-        case 'a':  // move left if you can
+        case 'a':                   // move left if you can
           faceDirection = "LEFT";
           if (validMove("LEFT") && !checkWin()){
             setVisited(currentCell);
@@ -541,7 +542,7 @@ void keyboard(unsigned char key, int x, int y)
           }
           glutPostRedisplay();
           break;
-        case 's':  // move down if you can
+        case 's':                   // move down if you can
           faceDirection = "DOWN";
           if (validMove("DOWN") && !checkWin()){
             setVisited(currentCell);
@@ -549,7 +550,7 @@ void keyboard(unsigned char key, int x, int y)
           }
           glutPostRedisplay();
           break;
-        case 'd':  // move right if you can
+        case 'd':                   // move right if you can
           faceDirection = "RIGHT";
           if (validMove("RIGHT") && !checkWin()){
             setVisited(currentCell);
@@ -557,11 +558,11 @@ void keyboard(unsigned char key, int x, int y)
           }
           glutPostRedisplay();
           break;
-        case 'r':  // restarts game
+        case 'r':                   // restarts game
           restart();
           glutPostRedisplay();
           break;
-        case 't': // enables/disables trail draws
+        case 't':                   // enables/disables trail draws
           changeTrails();
           glutPostRedisplay();
           break;

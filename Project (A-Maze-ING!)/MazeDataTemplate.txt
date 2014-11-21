@@ -1,4 +1,4 @@
-//remove all commented lines after filling out template!(102 total lines)
+//remove all commented lines after filling out template!(should only be 102 lines)
 //below are cell codes for wall types
 //0 = left
 //1 = up
@@ -125,7 +125,7 @@
 9
 6
 9
-//starting cell
+//starting cell number
 0
-//winning cell
-99
+//winning cell number
+69
